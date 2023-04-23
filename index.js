@@ -4,11 +4,12 @@ const { Configuration, OpenAIApi } = require("openai");
 const express = require ('express')
 const bodyParser =require('body-parser')
 const cors = require('cors')
+const BASE_URL = process.env.BASE_URL
 
 
 const configuration = new Configuration({
     organization: "org-4GdvRv3EsLPj9Gsrg1OQ1qzJ",
-    apiKey: "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",
+    apiKey: `${BASE_URL}`,
 });
 const openai = new OpenAIApi(configuration);
   
@@ -17,7 +18,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-const port = 3080;
+const port = process.env.PORT || 3080;
 
 app.post('/',async(req,res)=>{
 
